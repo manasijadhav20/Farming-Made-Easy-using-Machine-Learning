@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Agro Genius</title>
+  
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+</head>
+
+<body>
+ <div class="login">
+  <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+    <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+        <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      </div>
+    </div>
+  </nav>
+	<center><h1>Crop Recommendation System</h1></center>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post" style="padding-left: 100px; padding-right: 100px;">
+      
+    	<input type="text" name="experience" placeholder="Date of Cultivation" required="required" />
+        <input type="text" name="test_score"  placeholder="Month(in number)" required="required" />
+		<input type="text" name="interview_score"  placeholder="Location" required="required" />
+<br>
+        <button type="submit" class="btn btn-success btn-large">Predict</button>
+        
+    </form>
+   <br>
+   <br>
+ </div>
+
+ <div class="output" style="Display:block;padding-left: 100px;">
+   <b>Starts From:</b> {{Day}}
+   <br>
+   <b>Location:</b> {{Loc}}
+   <br>
+   <b>Available crops:</b> {{Avail}}
+   <br>
+   <b>Highly Recommended:</b> {{High}}
+   <br>
+   <b>Recommended:</b> {{Rec}}
+   <br>
+   <b>Not Recommended:</b> {{Low}}
+   <br>
+ </div>
+
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agro Genius</title>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+
+        span {
+            vertical-align: middle;
+         }
+
+        .brand-logo > span,.brand-logo > img {
+            vertical-align: middle;
+        }
+        .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+      }
+
+.image-area
+{
+	position: absolute;
+}
+
+.img-wrapper
+{
+	width: 300px;
+	height: 300px;
+	position: relative;
+	overflow: hidden;
+}
+
+.img-wrapper:before
+{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 180%;
+	height: 100%;
+	width: 100%;
+	background: rgba(255,255,255,.3);
+	z-index: 1;
+	transform: skew(45deg);
+	transition: .5s;
+}
+
+.img-wrapper:hover:before
+{
+	left: -180%;
+}
+
+.img-wrapper img
+{
+	height: 250px;
+	width: 250px;
+	filter: grayscale(0%);
+	transition: 2s;
+  border: green 3px groove;
+}
+.img-wrapper:hover img
+{
+	filter: grayscale(50%);
+	transform: scale(1.1);
+}
+
+.img-wrapper h2
+{
+	background: indianred;
+  font-size: 25px;
+	font-family: Poppins;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 10px 0;
+	position: absolute;
+	bottom: 0;
+	width: 87%;
+	transform: perspective(400px) rotateY(90deg);
+	transform-origin: right;
+	transition: 1s;
+}
+
+.img-wrapper:hover h2
+{
+	transform: perspective(400px) rotateY(0deg);
+}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+</head>
+
+<body class="main">
+  <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+    <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+        <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+        <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+      </div>
+    </div>
+  </nav>
+  <div>
+
+  <!-- Starts -->
+  <div class="row" style="margin-top: 30px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/paddy" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/rice.jpg" alt="Paddy">
+            <h2>Paddy</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <a href="http://localhost:5000/commodity/wheat" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/wheat.jpg" alt="Wheat">
+            <h2>Wheat</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/barley" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/Barley.jpg" alt="Barley">
+            <h2>Barley</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/soyabean" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/soybean.jpg" alt="Soyabean">
+            <h2>SoyaBean</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 350px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/cotton" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/cotton.jpg" alt="Cotton">
+            <h2>Cotton</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <a href="http://localhost:5000/commodity/copra" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/coconut.png" alt="Cotton">
+            <h2>Coconut</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/groundnut" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/groundnut.jpg" alt="Groundnut">
+            <h2>Ground Nut Seeds</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/rape" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/mustradseeds.jpg" alt="Mustard Seeds">
+            <h2>Mustard Seeds</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 350px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/sesamum" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/sesamum.jpg" alt="Sesamum">
+            <h2>Gingelly Seed(Sesamum)</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <a href="http://localhost:5000/commodity/gram" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/gram.jpg" alt="Gram">
+            <h2>Gram</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/sugarcane" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/sugarcane.jpg" alt="Sugarcane">
+            <h2>Sugarcane</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/arhar" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/arhar.jpg" alt="Arhar">
+            <h2>Arhar</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 350px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/ragi" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/ragi.jpg" alt="Ragi">
+            <h2>Ragi</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <a href="http://localhost:5000/commodity/maize" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/maize.jpg" alt="Maize">
+            <h2>Maize</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/moong" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/moong.jpg" alt="Moong">
+            <h2>Moong</h2>
+          </div>
+        </div>
+    </a>
+    </div> 
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/masoor" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/masoor.jpeg" alt="Massor">
+            <h2>Masoor</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 350px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/urad" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/urad.jpg" alt="Urad">
+            <h2>Urad</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <div class="image-area">
+        <div class="img-wrapper">
+          <img src="/static/rawjute.jpg" alt="Raw jute">
+          <h2>Raw Jute</h2>
+        </div>
+      </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/niger" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/nigerseed.jpg" alt="Niger Seed">
+            <h2>Niger Seeds</h2>
+          </div>
+        </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="http://localhost:5000/commodity/safflower" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/safflower.jpg" alt="Kardi Seed">
+            <h2>Kardi Seeds(Safflower)</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+    <div class="row" style="margin-top: 350px; padding-left: 50px;">
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/sunflower" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/sunflower.jpg" alt="Sunflower">
+            <h2>Sunflower</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+     <div class="col s3">
+      <a href="http://localhost:5000/commodity/jowar" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/jowar.jpg" alt="Jowar">
+            <h2>Jowar</h2>
+          </div>
+        </div>
+    </a>
+    </div> 
+    <div class="col s3">
+      <a href="http://localhost:5000/commodity/bajra" style="color: #000000">
+        <div class="image-area">
+          <div class="img-wrapper">
+            <img src="/static/bajra.jpg" alt="Bajra">
+            <h2>Bajra</h2>
+          </div>
+        </div>
+    </a>
+    </div>
+  </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('.slider').slider({full_width :true});
+  });
+</script>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

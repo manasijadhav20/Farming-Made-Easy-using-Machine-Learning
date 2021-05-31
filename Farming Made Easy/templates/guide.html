@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agro Genius</title>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Frank+Ruhl+Libre:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+     <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+        span,img {
+            vertical-align: middle;
+         }
+
+        .brand-logo > span,.brand-logo > img {
+            vertical-align: middle;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+            }
+            * {
+        box-sizing: border-box;
+      }
+
+      *:active {
+        outline:none;
+      }
+      
+      #content {
+        display:grid;
+        grid-template-columns: 150px auto;
+        height:100%;
+      }
+
+      #nav {
+        width: 100%;
+        text-align:center;
+        height:100%;
+        background-color:white;
+        color: black;
+      }
+      
+      #nav a {
+        line-height:50px;
+        text-decoration:none;
+        color:black;
+        border: 1px solid black;
+        font-variant:small-caps;
+        font-size: 25px;
+        display: block;
+      }
+
+      #nav a:hover {
+        background-color: rgba(0,0,0,0.1)
+      }
+
+      main {
+        display:inline-block;
+        margin:0px;
+        height:100%;
+      }
+      
+      .page {
+        display: none;
+        background-color: white;
+        padding-left:20px;
+        padding-top:20px;
+  
+      }
+      
+      .page h1 {
+        margin:0px;
+      }
+      
+      .default {
+        display:block;
+      }
+      
+      :target {
+        display:block;
+      }
+      
+      :target ~ .default {
+        display:none;
+      }
+      .chart--container { 
+      min-height: 700px;
+      width: 100%;
+      height: 100%;
+    }
+    .zc-ref {
+      display: none;
+    }
+    a:link {
+  /* color: #867e36; */
+  background-color: transparent;
+  text-decoration: none;
+}
+
+  a:visited {
+    /* color: #867e36; */
+    background-color: transparent;
+    text-decoration: none;
+  }
+  table {
+  border-collapse: collapse;
+}
+
+table, td, th {
+  border: 1px solid black;
+  color: #304100;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+    </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+    <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+        <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+      </div>
+    </div>
+  </nav>
+  
+
+    <div id="content">
+        <nav id="nav" style="height: 880px;width: 300px; padding-top: 100px;">
+          <a href="#page2">Guide Books</a>
+          <a href="#page3">Irrigated-Unirrigated Area Map-View</a>
+          <a href="#page4">Agricultural Land Map-View</a>
+        </nav>
+        <main>
+            <div id="page2" class="page" style="margin-left: 150px;">
+            <h5>Handbooks</h5>
+            <ul>
+              <li>A Farmer Friendly Handbook for Schemes & Programmes 2018-19 of DAC&FW.<br>
+                <a href="http://agricoop.gov.in/sites/default/files/FFH201819_Eng.pdf" target="_blank">English ( 27.83 MB )</a> , 
+                <a href="http://agricoop.gov.in/sites/default/files/FFH201819_Hindi.pdf" target="_blank">Hindi ( 32.63 MB )</a> , 
+                <a href="http://agricoop.gov.in/sites/default/files/FFH201819_BiLing.pdf" target="_blank">Bilingual ( 57.64 MB )</a> 
+              </li>
+                <li>A Handbook Schemes, Programmes and Missions Promoting Agricultural Development and Farmers Welfare<br>
+                  <a href="http://agricoop.gov.in/sites/default/files/Handbook_Schemes_Prog_Eng.pdf" target="_blank">English ( 23 MB )</a> , 
+                  <a href="http://agricoop.gov.in/sites/default/files/Handbook_Schemes_Prog_Hin.pdf" target="_blank">Hindi ( 47.75 MB )</a>
+                </li>
+                <li>
+                  <a href="http://agricoop.gov.in/sites/default/files/Handbook_Schemes_Prog_Eng.pdf" target="_blank">A Handbook, Schemes, Programmes and Missions Promoting Agricultural Development and Farmers Welfare.( 294.08 MB )</a> 
+                </li>
+                <li>
+                  <a href="http://agricoop.nic.in/sites/default/files/ext_rpt_1.pdf" target="_blank">Farm Women Friendly Handbook - English (752.7 KB)</a> 
+                </li>
+                <li>
+                  <a href="http://agricoop.nic.in/sites/default/files/farm_w_f_handbook_0.pdf" target="_blank">Farm Women Friendly Handbook - Hindi (872.47 KB)</a> 
+                </li>
+                </ul>
+                <table>
+                  <tr style="background-color: #869b3e;">
+                  <th>State Name</th>
+                  <th>Farmer Friendly Material</th>
+                </tr>
+                <tr>
+                  <td>Andhra Pradesh</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/farmers-friendly-handbook-andhrapradesh.pdf">Farmer Friendly Handbook For Andhra Pradesh 2014 (643 KB)</a></td>
+                </tr>
+                <tr>
+                  <td>Andaman And Nicobar</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/ANDAMAN%20AND%20NICOBAR.pdf">Farmer Friendly Handbook of ANDAMAN AND NICOBAR 2015 (7.06 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Arunachal Pradesh</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Arunachal.pdf">Farmer Friendly Handbook For Arunachal Pradesh 2014 (1.22 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Assam</td>
+                  <td><a target="_blank" href="http://agricoop.gov.in/sites/default/files/Farmers_Handbook_Assam.pdf">Farmer Friendly Handbook For Assam 2017 (1.55 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>West Bengal</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/farmers-portal-hand-book_bengali.pdf">Farmer Friendly Handbook of Bengali 2014 (11.5 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Bihar</td>
+                  <td><a target="_blank" href="#">Farmer Friendly Handbook of Bihar (Hindi) (189 KB)</a></td>
+                </tr>
+                <tr>
+                  <td>Chattisgarh</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/State-book-for-FFH-Chhattisgarh-Hindi-Booklet.pdf">Farmer Friendly Handbook of Chattisgarh (Hindi) 2014 (3.18 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Delhi</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Flyer-Book_Delhi.pdf">Farmer Friendly Handbook of Delhi (Hindi) (382 KB)</a></td>
+                </tr>
+                <tr>
+                  <td>GOA</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/GOA.pdf">Farmer Friendly Handbook of GOA 2015 (682 KB)</a></td>
+                </tr>
+                <tr>
+                  <td>Himachal Pradesh</td>
+                  <td><a target="_blank" href="http://agricoop.nic.in/sites/default/files/Farmer_Friendly_Handbook_HP_Eng_2017.pdf">Farmer Friendly Handbook for Himachal Pradesh(Bilingual), 2017 (2.36 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Gujrat</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Gujrat.pdf">Farmer Friendly Handbook of Gujrat 2014(State Components) (English)(2.84 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Karnataka</td>
+                  <td><a target="_blank" href="http://agricoop.nic.in/sites/default/files/Farmer%20friendly%20handbook%202017-18%20in%20Kannada.pdf">Farmer friendly handbook for Karnataka, (2017-18)(2.86 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Kerala</td>
+                  <td><a target="_blank" href="http://agricoop.nic.in/sites/default/files/Kerala_2017-18.pdf">Farmer friendly handbook for Kerala, (2017-18)(8.29 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Meghalaya</td>
+                  <td><a target="_blank" href="#">Farmer friendly handbook for Meghalaya, (2017-18)</a>(21.05MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Mizoram</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Mizoram.pdf">Farmer Friendly Handbook of Mizoram (English) 2014(645.09 KB)</a></td>
+                </tr>
+                <tr>
+                  <td>Nagaland</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Farmer-Friendly-Nagaland-2014.pdf">Farmer Friendly Handbook of Nagaland 2014(13.5 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Orissa</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Orissa.pdf">Farmer Friendly Handbook For Orissa 2014(19.2 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Puducherry</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Puducherry.pdf">Farmer Friendly Handbook of Puducherry 2014(1.88 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Punjab</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/ffhbpunjab2016.pdf">Farmer Friendly Handbook of Punjab 2016(6.93 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Rajasthan</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/rajasthan2015.pdf">Farmer Friendly Handbook of Rajasthan 2015(1.99 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Sikkim</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Sikkim.pdf">Farmer Friendly Handbook For Sikkim 2014 (296 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Tamil nadu</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Farmers%20Hand%20BookTamilnadu2017-18.pdf">Farmer Friendly Handbook of Tamil nadu 2017 (9.65 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Telangana</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/rythu-snehapurvaka-telangana.pdf">Farmer Friendly Handbook of Telangana 2014 (2.74 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Tripura</td>
+                  <td><a target="_blank" href="https://farmer.gov.in/imagedefault/handbooks/Farmrsfriendlyhandbook-T-SAMETI-Tripura_28102014.pdf">Farmer Friendly Handbook of Tripura 2014 (3.25 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Uttar Pradesh</td>
+                  <td><a target="_blank" href="http://agricoop.gov.in/sites/default/files/Hand%20Book%20UP2017-18.pdf">Farmer Friendly Handbook For Uttar Pradesh 2017 (1.14 MB)</a></td>
+                </tr>
+                <tr>
+                  <td>Uttarakhand</td>
+                  <td><a target="_blank" href="http://agricoop.gov.in/sites/default/files/Farmer_Friendly_Handbook%20_Uttarakhand.pdf">Farmer Friendly Handbook For Uttarakhand 2017 (14.47 MB)</a></td>
+                </tr>
+                
+               </table>
+          </div>
+          <div id="page3" style=" margin-left: 150px;" class="page">
+            <h4>Irrigated-Unirrigated Area Land<img src="/static/index2.png" style="float: right;" alt=""></h4>
+            <div id="myChart" class="chart--container" >
+            </div>
+            <script>
+              ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+              let chartConfig = {
+                shapes: [{
+                    type: 'zingchart.maps',
+                    options: {
+                      bbox: [67.177, 36.494, 98.403, 6.965], // get bbox from zingchart.maps.getItemInfo('world-countries','ind');
+                      ignore: ['IND'], // ignore India because we are rendering a more specific India map below
+                      // name: 'world.countries',
+                      panning: false, // turn of zooming. Doesn't work with bounding box
+                      style: {
+                        tooltip: {
+                          borderColor: '#000',
+                          borderWidth: '2px',
+                          fontSize: '20px'
+                        },
+                        controls: {
+                          visible: false // turn of zooming. Doesn't work with bounding box
+                        },
+                        hoverState: {
+                          alpha: .28
+                        }
+                      },
+                      zooming: false // turn of zooming. Doesn't work with bounding box
+                    }
+                  },
+                  {
+                    type: 'zingchart.maps',
+                    options: {
+                      name: 'ind',
+                      panning: false, // turn of zooming. Doesn't work with bounding box
+                      zooming: false,
+                      scrolling: false,
+                      style: {
+                        tooltip: {
+                          borderColor: '#000',
+                          borderWidth: '2px',
+                          fontSize: '15px'
+                        },
+                        borderColor: '#000',
+                        borderWidth: '2px',
+                        controls: {
+                          visible: false, // turn of zooming. Doesn't work with bounding box
+                        },
+                        hoverState: {
+                          alpha: .28
+                        },
+                        items: {
+                          KA: {
+                            tooltip: {
+                              text: 'State: Karnataka<br>Irrigated Area %: 34.18229579<br>Total Irrigated Area: 4186.181<br>Total UnIrrigated: 8060.454<br>% of Total Irrigated Area over Total Irrigated Area Country: 4.339923214<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 7.909973866',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MH: {
+                            tooltip: {
+                              text: 'State: Maharashtra<br>Irrigated Area %: 18.23990193<br>Total Irrigated Area: 4281.567135<br>Total UnIrrigated: 19192.0631<br>% of Total Irrigated Area over Total Irrigated Area Country: 4.438812512<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 18.83376763',
+                              backgroundColor:'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TL: {
+                            tooltip: {
+                              text: 'State: Telangana<br>Irrigated Area %: 23.9524042<br>Total Irrigated Area: 115.807<br>Total UnIrrigated: 367.681<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.120060143<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.360816785',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AP: {
+                            tooltip: {
+                              text: 'State: Andra Pradesh<br>Irrigated Area %: 50.53072764<br>Total Irrigated Area: 3885.722<br>Total UnIrrigated: 3804.098<br>% of Total Irrigated Area over Total Irrigated Area Country: 4.028429519<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 3.733079522',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00FF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AR: {
+                            tooltip: {
+                              text: 'State: Arunachal Pradesh<br>Irrigated Area %: 18.72909699<br>Total Irrigated Area: 58<br>Total UnIrrigated: 243<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.058056663<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.238463448',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AS: {
+                            tooltip: {
+                              text: 'State: Assam<br>Irrigated Area %: 9.16000954389<br>Total Irrigated Area: 373.966<br>Total UnIrrigated: 3708.628<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.387700323<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 3.639391846',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          BR: {
+                            tooltip: {
+                              text: 'State: Bihar<br>Irrigated Area %: 68.65051417<br>Total Irrigated Area: 5267.521<br>Total UnIrrigated: 2405.431<br>% of Total Irrigated Area over Total Irrigated Area Country: 5.460976644<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 2.360524152',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00FF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          CH: {
+                            tooltip: {
+                              text: 'State: Chandigarh <br>Irrigated Area %: 14.75527689<br>Total Irrigated Area: 0.271939753<br>Total UnIrrigated: 1.571060247<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.000281927<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.00154173',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          CT: {
+                            tooltip: {
+                              text: 'State: Chhattisgarh <br>Irrigated Area %: 31.19710861<br>Total Irrigated Area: 1786.937<br>Total UnIrrigated: 3940.956<br>% of Total Irrigated Area over Total Irrigated Area Country: 1.852564275<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 3.867382528',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+          
+                          DN: {
+                            tooltip: {
+                              text: 'State: Dadra and Nagar Haveli<br>Irrigated Area %: 33.24150992<br>Total Irrigated Area: 7.723<br>Total UnIrrigated: 15.51<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.008006636<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.015220445',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          DD: {
+                            tooltip: {
+                              text: 'State: Daman and Diu<br>Irrigated Area %: 0.717102904<br>Total Irrigated Area: 0.02<br>Total UnIrrigated: 2.769<br>% of Total Irrigated Area over Total Irrigated Area Country: 2.07345E-05<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.002717306',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00AE4D',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          DL: {
+                            tooltip: {
+                              text: 'State: Delhi<br>Irrigated Area %: 82.14462961<br>Total Irrigated Area: 29.03812657<br>Total UnIrrigated: 6.311873434<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.030104584<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.006194037',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AN: {
+                            tooltip: {
+                              text: 'State: Andaman and Nicobar Islands<br>Irrigated Area %: 1.347697507<br>Total Irrigated Area: 0.319<br>Total UnIrrigated: 23.351<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.000330716<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.022915062',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          GA: {
+                            tooltip: {
+                              text: 'State: Goa<br>Irrigated Area %: 24.60336584<br>Total Irrigated Area: 38.8<br>Total UnIrrigated: 118.902<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.040224974<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.116682226',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          GJ: {
+                            tooltip: {
+                              text: 'State: Gujarat<br>Irrigated Area %: 47.08472593<br>Total Irrigated Area: 6014.179128<br>Total UnIrrigated: 6758.920872<br>% of Total Irrigated Area over Total Irrigated Area Country: 6.235056633<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 6.632738982',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          HR: {
+                            tooltip: {
+                              text: 'State: Haryana<br>Irrigated Area %: 89.11521326<br>Total Irrigated Area: 5824.262<br>Total UnIrrigated: 711.392<br>% of Total Irrigated Area over Total Irrigated Area Country: 6.038164584<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.698111065',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          HP: {
+                            tooltip: {
+                              text: 'State: Himachal Pradesh<br>Irrigated Area %: 21.00727151<br>Total Irrigated Area: 192.9120851<br>Total UnIrrigated: 725.3989149<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.199996999<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.711856486',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          JK: {
+                            tooltip: {
+                              text: 'State: Jammu and Kashmir<br>Irrigated Area %: 42.83103948<br>Total Irrigated Area: 504.451562<br>Total UnIrrigated: 673.319438<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.522978114<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.660749278',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          JH: {
+                            tooltip: {
+                              text: 'State: Jharkhand<br>Irrigated Area %: 14.25425004<br>Total Irrigated Area: 221.467<br>Total UnIrrigated: 1332.224<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.229600625<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 1.30735279',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          KL: {
+                            tooltip: {
+                              text: 'State: Kerala<br>Irrigated Area %: 17.89367737<br>Total Irrigated Area: 469.647<br>Total UnIrrigated: 2154.977<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.486895315<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 2.114745863',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          LD: { //errorr
+                            tooltip: {
+                              text: 'Lakshadweep has 1,494 monthly users total',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00AE4D',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MP: {
+                            tooltip: {
+                              text: 'State: Madhya Pradesh<br>Irrigated Area %: 43.26159978<br>Total Irrigated Area: 10300.612<br>Total UnIrrigated: 13500.446<br>% of Total Irrigated Area over Total Irrigated Area Country: 10.67891358<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 13.25723896',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MN: {
+                            tooltip: {
+                              text: 'State: Manipur<br>Irrigated Area %: 18.03408873<br>Total Irrigated Area: 69.03088486<br>Total UnIrrigated: 313.7491151<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.071566122<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.307891752',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          ML: {
+                            tooltip: {
+                              text: 'State: Meghalaya<br>Irrigated Area %: 37.13817332<br>Total Irrigated Area: 127.544<br>Total UnIrrigated: 215.887<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.132228197<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.211856619',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MZ: {
+                            tooltip: {
+                              text: 'State: Mizoram<br>Irrigated Area %: 14.5292707<br>Total Irrigated Area: 21.024<br>Total UnIrrigated: 123.677<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.02179613<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.121368081',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          NL: {
+                            tooltip: {
+                              text: 'State: Nagaland<br>Irrigated Area %: 21.19690525<br>Total Irrigated Area: 106<br>Total UnIrrigated: 394.073<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.109892969<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.386716075',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          OR: {
+                            tooltip: {
+                              text: 'State: Odisha<br>Irrigated Area %: 28.69913279<br>Total Irrigated Area: 1484.607<br>Total UnIrrigated: 3688.396<br>% of Total Irrigated Area over Total Irrigated Area Country: 1539130865<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 3.619537556',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          PY: {
+                            tooltip: {
+                              text: 'State: Puducherry<br>Irrigated Area %: 81.39674443<br>Total Irrigated Area: 21.702<br>Total UnIrrigated: 4.96<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.02249903<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0004867402',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          PB: {
+                            tooltip: {
+                              text: 'State: Punjab<br>Irrigated Area %: 98.72400546<br>Total Irrigated Area: 7757.063<br>Total UnIrrigated: 100.259<br>% of Total Irrigated Area over Total Irrigated Area Country: 8.041949879<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.098387271',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          RJ: {
+                            tooltip: {
+                              text: 'State: Rajasthan<br>Irrigated Area %: 41.96672762<br>Total Irrigated Area: 10170.785<br>Total UnIrrigated: 14064.569<br>% of Total Irrigated Area over Total Irrigated Area Country: 10.54431854<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 13.8019984',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          SK: {
+                            tooltip: {
+                              text: 'State: Sikkim<br>Irrigated Area %: 8.86994649<br>Total Irrigated Area: 12.05248328<br>Total UnIrrigated: 123.8275167<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.012495124<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.121515788',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TR: {  //error
+                            tooltip: {
+                              text: 'Tripura',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FF0000',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          UP: {
+                            tooltip: {
+                              text: 'State: Uttar Pradesh<br>Irrigated Area %: 80.18002827<br>Total Irrigated Area: 20964.765<br>Total UnIrrigated: 5182.351<br>% of Total Irrigated Area over Total Irrigated Area Country: 21.73471962<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 5.085601999',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#006400',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          UT: {
+                            tooltip: {
+                              text: 'State: Uttarakhand<br>Irrigated Area %: 49.4598832<br>Total Irrigated Area: 542.483<br>Total UnIrrigated: 554.351<br>% of Total Irrigated Area over Total Irrigated Area Country: 0.562406299<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 0.544001854',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#FFFF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          WB: {
+                            tooltip: {
+                              text: 'State: West Bengal<br>Irrigated Area %: 58.82173691<br>Total Irrigated Area: 5699.779249<br>Total UnIrrigated: 3990.140751<br>% of Total Irrigated Area over Total Irrigated Area Country: 5.909110064<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 3.915649052',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00FF00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TN: {
+                            tooltip: {
+                              text: 'State: Tamil Nadu<br>Irrigated Area %: 56.62347875<br>Total Irrigated Area: 3394.295<br>Total UnIrrigated: 2600.206<br>% of Total Irrigated Area over Total Irrigated Area Country: 3.518954308<br>% of Total UnIrrigated Area over Total Irrigated Area in Country: 2.55166291',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00FF00',
+                            label: {
+                              visible: true
+                            }
+                          }
+                        },
+                        label: { // text displaying. Like valueBox
+                          fontSize: '15px',
+                          visible: false
+                        }
+                      },
+                      zooming: false // turn of zooming. Doesn't work with bounding box
+                    }
+                  }
+                ]
+              }
+          
+              zingchart.loadModules('maps,maps-ind,maps-world-countries');
+              zingchart.render({
+                id: 'myChart',
+                data: chartConfig,
+                height: '100%',
+                width: '100%',
+              });
+            </script>
+          </div>
+          <div id="page4" style=" margin-left: 150px;" class="page">
+            <h4>Agricultural Land<img src="/static/index1.png" style="float: right;" alt=""></h4>
+            <div id="myChart1" class="chart--container" >
+            </div>
+            <script>
+              ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+              let chartConfig1 = {
+                shapes: [{
+                    type: 'zingchart.maps',
+                    options: {
+                      bbox: [67.177, 36.494, 98.403, 6.965], // get bbox from zingchart.maps.getItemInfo('world-countries','ind');
+                      ignore: ['IND'], // ignore India because we are rendering a more specific India map below
+                      // name: 'world.countries',
+                      panning: false, // turn of zooming. Doesn't work with bounding box
+                      style: {
+                        tooltip: {
+                          borderColor: '#000',
+                          borderWidth: '2px',
+                          fontSize: '20px'
+                        },
+                        controls: {
+                          visible: false // turn of zooming. Doesn't work with bounding box
+                        },
+                        hoverState: {
+                          alpha: .28
+                        }
+                      },
+                      zooming: false // turn of zooming. Doesn't work with bounding box
+                    }
+                  },
+                  {
+                    type: 'zingchart.maps',
+                    options: {
+                      name: 'ind',
+                      panning: false, // turn of zooming. Doesn't work with bounding box
+                      zooming: false,
+                      scrolling: false,
+                      style: {
+                        tooltip: {
+                          borderColor: '#000',
+                          borderWidth: '2px',
+                          fontSize: '15px'
+                        },
+                        borderColor: '#000',
+                        borderWidth: '2px',
+                        controls: {
+                          visible: false, // turn of zooming. Doesn't work with bounding box
+                        },
+                        hoverState: {
+                          alpha: .28
+                        },
+                        items: {
+                          KA: {
+                            tooltip: {
+                              text: 'State : Karnataka<br>119.96<br>Agricultural Land : 12846<br>Net Are Sown : 9793<br>Area of Non Agricultural Land : 1436',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#008500',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MH: {
+                            tooltip: {
+                              text: 'State : Maharashtra<br>126.12<br>Agricultural Land : 21129<br>Net Are Sown : 17344<br>Area of Non Agricultural Land : 1456',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#003300',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TL: {
+                            tooltip: {
+                              text: 'State : Telangana<br>144.13<br>Agricultural Land : 277<br>Net Are Sown : 256<br>Area of Non Agricultural Land : 141',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AP: {
+                            tooltip: {
+                              text: 'State : Andhra Pradesh<br>122.79<br>Agricultural Land : 15930<br>Net Are Sown : 11117<br>Area of Non Agricultural Land : 2873',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#005c00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AR: {
+                            tooltip: {
+                              text: 'State : Arunachal Pradesh<br>131.75<br>Agricultural Land : 424<br>Net Are Sown : 216<br>Area of Non Agricultural Land : 26',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AS: {
+                            tooltip: {
+                              text: 'State : Assam<br>149.33<br>Agricultural Land : 3217<br>Net Are Sown : 2811<br>Area of Non Agricultural Land : 1212',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          BR: {
+                            tooltip: {
+                              text: 'State : Bihar<br>122.79<br>Agricultural Land : 15930<br>Net Are Sown : 11117<br>Area of Non Agricultural Land : 2873',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00d100',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          CH: {
+                            tooltip: {
+                              text: 'State : Chandigarh<br>151.47<br>Agricultural Land : 2<br>Net Are Sown : 5<br>Area of Non Agricultural Land : 1',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          CT: {
+                            tooltip: {
+                              text: 'State : Chhattisgarh<br>121.82<br>Agricultural Land : 5552<br>Net Are Sown : 4671<br>Area of Non Agricultural Land : 734',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00d100',
+                            label: {
+                              visible: true
+                            }
+                          },
+          
+                          DN: {
+                            tooltip: {
+                              text: 'Dadra and Nagar Haveli',
+                              backgroundColor: 'azure'
+                            },
+                            backgroundColor: 'azure',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          DD: {
+                            tooltip: {
+                              text: 'Daman and Diu',
+                              backgroundColor: 'azure'
+                            },
+                            backgroundColor: 'azure',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          DL: {
+                            tooltip: {
+                              text: 'State : Delhi<br>220.17<br>Agricultural Land : 53<br>Net Are Sown : 22<br>Area of Non Agricultural Land : 76',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          AN: {
+                            tooltip: {
+                              text: 'State : Andaman and Nicobar Islands<br>166.76<br>Agricultural Land : 28<br>Net Are Sown : 15<br>Area of Non Agricultural Land : 7',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          GA: {
+                            tooltip: {
+                              text: 'State : Goa<br>123.22<br>Agricultural Land : 197<br>Net Are Sown : 132<br>Area of Non Agricultural Land : 37',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          GJ: {
+                            tooltip: {
+                              text: 'State : Gujarat<br>122.31<br>Agricultural Land : 12661<br>Net Are Sown : 10302<br>Area of Non Agricultural Land : 1171',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#008500',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          HR: {
+                            tooltip: {
+                              text: 'State : Haryana<br>181.5<br>Agricultural Land : 3664<br>Net Are Sown : 3513<br>Area of Non Agricultural Land : 542',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          HP: {
+                            tooltip: {
+                              text: 'State : Himachal Pradesh<br>174.21<br>Agricultural Land : 811<br>Net Are Sown : 543<br>Area of Non Agricultural Land : 353',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          JK: {
+                            tooltip: {
+                              text: 'State: Jammu and Kashmir<br>155.99<br>Agricultural Land : 1070<br>Net Are Sown : 745<br>Area of Non Agricultural Land : 267',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          JH: {
+                            tooltip: {
+                              text: 'State : Jharkhand<br>117.86<br>Agricultural Land : 19075<br>Net Are Sown : 1406<br>Area of Non Agricultural Land : 710',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          KL: {
+                            tooltip: {
+                              text: 'State : Kerala<br>126.54<br>Agricultural Land : 2280<br>Net Are Sown : 2048<br>Area of Non Agricultural Land : 508',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          LD: {
+                            tooltip: {
+                              text: 'State : Lakshadweep<br>146.8<br>Agricultural Land : 2<br>Net Are Sown : 2<br>Area of Non Agricultural Land : 1',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MP: {
+                            tooltip: {
+                              text: 'State : Madhya Pradesh<br>150.66<br>Agricultural Land : 17264<br>Net Are Sown : 15352<br>Area of Non Agricultural Land : 2126',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#005c00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MN: {
+                            tooltip: {
+                              text: 'State : Manipur<br>100<br>Agricultural Land : 316<br>Net Are Sown : 309<br>Area of Non Agricultural Land : 26',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          ML: {
+                            tooltip: {
+                              text: 'State : Meghalaya<br>118.99<br>Agricultural Land : 1056<br>Net Are Sown : 285<br>Area of Non Agricultural Land : 108',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          MZ: {
+                            tooltip: {
+                              text: 'State : Mizoram<br>100<br>Agricultural Land : 408<br>Net Are Sown : 116<br>Area of Non Agricultural Land : 87',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          NL: {
+                            tooltip: {
+                              text: 'State : Nagaland<br>128.48<br>Agricultural Land : 694<br>Net Are Sown : 380<br>Area of Non Agricultural Land : 93',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          OR: {
+                            tooltip: {
+                              text: 'State : Odisha<br>115.56<br>Agricultural Land : 6743<br>Net Are Sown : 4386<br>Area of Non Agricultural Land : 1305',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00d100',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          PY: {
+                            tooltip: {
+                              text: 'State : Puducherry<br>161.57<br>Agricultural Land : 30<br>Net Are Sown : 16<br>Area of Non Agricultural Land : 19',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          PB: {
+                            tooltip: {
+                              text: 'State : Punjab<br>189.64<br>Agricultural Land : 4286<br>Net Are Sown : 4150<br>Area of Non Agricultural Land : 429',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          RJ: {
+                            tooltip: {
+                              text: 'State : Rajasthan<br>137.04<br>Agricultural Land : 25548<br>Net Are Sown : 17479<br>Area of Non Agricultural Land : 1864',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#003300',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          SK: {
+                            tooltip: {
+                              text: 'State : Sikkim<br>185.66<br>Agricultural Land : 98<br>Net Are Sown : 77<br>Area of Non Agricultural Land : 11',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TR: {
+                            tooltip: {
+                              text: 'State : Tripura',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: 'azure',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          UP: {
+                            tooltip: {
+                              text: 'State : Uttar Pradesh<br>155.89<br>Agricultural Land : 19075<br>Net Are Sown : 16564<br>Area of Non Agricultural Land : 2893',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#005c00',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          UT: {
+                            tooltip: {
+                              text: 'State : Uttarakhand<br>159.24<br>Agricultural Land : 1547<br>Net Are Sown : 706<br>Area of Non Agricultural Land : 221',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#98ff98',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          WB: {
+                            tooltip: {
+                              text: 'State : West Bengal<br>185.94<br>Agricultural Land : 5673<br>Net Are Sown : 5205<br>Area of Non Agricultural Land : 1822',
+                              backgroundColor: 'azure',
+                              alpha: .80
+                            },
+                            backgroundColor: '#00d100',
+                            label: {
+                              visible: true
+                            }
+                          },
+                          TN: {
+                            tooltip: {
+                              text: 'State : Tamil Nadu<br>113.11<br>Agricultural Land : 8126<br>Net Are Sown : 4544<br>Area of Non Agricultural Land : 2184',
+                              backgroundColor: 'azure'
+                            },
+                            backgroundColor: '#00d100',
+                            label: {
+                              visible: true
+                            }
+                          }
+                        },
+                        label: { // text displaying. Like valueBox
+                          fontSize: '15px',
+                          visible: false
+                        }
+                      },
+                      zooming: false // turn of zooming. Doesn't work with bounding box
+                    }
+                  }
+                ]
+              }
+          
+              zingchart.loadModules('maps,maps-ind,maps-world-countries');
+              zingchart.render({
+                id: 'myChart1',
+                data: chartConfig1,
+                height: '100%',
+                width: '100%',
+              });
+            </script>
+            
+          </div>
+          
+        </main>
+      </div>
+
+</body>
+</html>

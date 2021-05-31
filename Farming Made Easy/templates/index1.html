@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Agro Genius</title>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+
+        span {
+            vertical-align: middle;
+         }
+
+        .brand-logo > span,.brand-logo > img {
+            vertical-align: middle;
+        }
+        .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+        }
+        :root {
+  --base-grid: 8px;
+  --colour-white: #fff;
+  --colour-black: #1a1a1a;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background-position: 100%;
+}
+
+body {
+
+  font-family: Josefin Sans, sans-serif;
+    margin: 0;
+  padding: 0;
+}
+
+.links {
+  --link-size: 180px;
+  color: var(--colour-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.links__list {
+  position: relative;
+  list-style: none;
+}
+
+.links__item {
+  width: var(--link-size);
+  height: var(--link-size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: calc(var(--link-size)/-2);
+  margin-left: calc(var(--link-size)/-2);
+  --angle: calc(360deg/var(--item-total));
+  --rotation: calc(140deg + var(--angle)*var(--item-count));
+  transform: rotate(var(--rotation)) translate(calc(var(--link-size) + var(--base-grid)*2)) rotate(calc(var(--rotation)*-1));
+}
+
+.links__link {
+  opacity: 0;
+  animation: on-load .3s ease-in-out forwards;
+  animation-delay: calc(var(--item-count)*150ms);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  background-color: var(--colour-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.links__icon {
+  width: calc(var(--base-grid)*8);
+  height: calc(var(--base-grid)*8);
+  transition: all .3s ease-in-out;
+  fill: var(--colour-black);
+}
+
+.links__text {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  height: calc(var(--base-grid)*2);
+  font-size: calc(var(--base-grid)*2);
+  /* display: none; */
+  bottom: calc(var(--base-grid)*8.5);
+  animation: text .3s ease-in-out forwards;
+  color:#397D02	;
+  font-weight: 500;
+}
+
+.links__link:after {
+  content: "";
+  background-color: transparent;
+  width: var(--link-size);
+  height: var(--link-size);
+  border: 2px dashed var(--colour-white);
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all .3s cubic-bezier(.53,-.67,.73,.74);
+  transform: none;
+  opacity: 0;
+}
+
+.links__link:hover .links__icon {
+  transition: all .3s ease-in-out;
+  transform: translateY(calc(var(--base-grid)*-1));
+}
+
+.links__link:hover .links__text {
+  display: block;
+}
+
+.links__link:hover:after {
+  transition: all .3s cubic-bezier(.37,.74,.15,1.65);
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+@keyframes on-load {
+  0% {
+    opacity: 0;
+    transform: scale(.3);
+  }
+  70% {
+    opacity: .7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(calc(var(--base-grid)*5));
+  }
+}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body class="main" style="background-image: url('/static/pattern.jpg');">
+
+    <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+      <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </div>
+      </div>
+    </nav>
+   
+        <div class="container" >
+            <div class="row">
+              <!-- <div class="col">
+                <div class="links">
+                    <ul class="links__list" style="--item-total:5">
+                      <li class="links__item" style="--item-count:1">
+                        <a class="links__link" href="http://localhost:5000/trends"  style="border: #324F17 3px solid;background-color: azure;">
+                          <img src="/static/trends.png" width="70px" alt="">
+                          <span class="links__text">Current Trends</span>
+                        </a>
+                      </li>
+                      <li class="links__item" style="--item-count:2">
+                        <a class="links__link" href="http://localhost:5000/weather" style="border: #324F17 3px solid; background-color: azure;">
+                            <img src="/static/weather.png" width="110px" alt="">
+                          <span class="links__text">Weather Forecast</span></a>
+                      </li>
+                      <li class="links__item" style="--item-count:3">
+                        <a class="links__link" href="http://localhost:5000/explore"  style="border: #324F17 3px solid;background-color: azure;">
+                            <img src="/static/crop.png" width="100px" alt="">
+                          <span class="links__text">Explore Crops</span></a>
+                      </li>
+                      <li class="links__item" style="--item-count:4">
+                        <a class="links__link" href="http://localhost:5000/guide"  style="border: #324F17 3px solid;background-color: azure;">
+                            <img src="/static/book.png" width="100px" alt="">
+                          <span class="links__text">Guide</span></a>
+                      </li>
+                      <li class="links__item" style="--item-count:5">
+                        <a class="links__link" href="#" style="border: #324F17 3px solid;background-color: azure;">
+                            <img src="/static/chat.png" width="90px" alt="">
+                          <span class="links__text">Chat</span></a>
+                      </li>
+                    </ul>
+                  </div>
+            
+              </div> -->
+              
+              <div class="col" style="padding-top: 150px; font-size: 40px;font-family: 'Titillium Web', sans-serif; padding-left: 120px;">
+                <h3 class="card-panel lighten-2 center valign-wrapper center" style="background-color: #D0F0C0;margin-top: 0px;border: 6px white solid;width: 509.99074px;margin-left: 0px;height: 119.99074px;"><img alt="" src="/static/Logo.png" width="70px" class="responsive-img" />
+                  <b style="font-family: 'Arvo', serif;"><span style="color:forestgreen; font-size: 65px;">Agro</span><span style="color:indianred; font-size: 65px;">Genius</span></b> 
+                </h3> 
+                "Agriculture is the backbone of the Indian Economy"<br>- Mahatma Gandhi
+              </div>
+            </div>
+
+    
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

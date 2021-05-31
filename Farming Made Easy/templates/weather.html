@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agro Genius</title>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+
+        span {
+            vertical-align: middle;
+         }
+
+        .brand-logo > span,.brand-logo > img {
+            vertical-align: middle;
+        }
+        .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+      }
+      input[type=text]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 20%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+</head>
+<body class="main">
+  <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+    <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+        <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+      </div>
+    </div>
+  </nav>
+  <div>
+
+
+
+    <div class="row">
+        <div class="card-panel col s9">
+          <div class="card-panel" >
+            <form method="GET">
+                <h4 class="#e0f7fa lighten-5" style="color: #4B5320; font-weight:500">Enter City Name</h4>
+                <input type="text" name="city" placeholder="City Name">
+                <input type="submit" value="Submit">
+              </form>
+            
+            <table class="striped" style="border: darkgray 1px solid;">
+              <thead>
+                  <!-- time,temp,mini,maxim,hum,weatherm,weatherd -->
+              <tr>
+                  <th style="color: #304100; background-color: #90EE90;">Time</th>
+                  <th style="color: #304100; background-color: #90EE90;">Temperature</th>
+                  <th style="color: #304100; background-color: #90EE90;">Minimum Temperature</th>
+                  <th style="color: #304100; background-color: #90EE90;">Maximum Temperature</th>
+                  <th style="color: #304100; background-color: #90EE90;">Humidity</th>
+                  <th style="color: #304100; background-color: #90EE90;">Weather Group</th>
+                  <th style="color: #304100; background-color: #90EE90;">Weather Description</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in context['weatherdesc'] %}
+            {% for j in range(24) %}
+              <tr>
+                <td>{{item[0][j]}}</td>
+                <td>{{item[1][j]}}</td>
+                <td>{{item[2][j]}}</td>
+                <td>{{item[3][j]}}</td>
+                <td>{{item[4][j]}}</td>
+                <td>{{item[5][j]}}</td>
+                <td>{{item[6][j]}}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+                  </div> 
+                </div>
+        </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Agro Genius</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" style="background-color: mediumseagreen;">
+        <a class="navbar-brand" href="http://localhost:5000">Agro Genius</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="http://localhost:5000/explore">Explore Crops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/trends">Current Trends</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/weather">Weather Forecast</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/fertilizer_info">Fertilizer Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/shop">Agri Shops</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/croprecomd">Crop Recommender</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/chat">Chat</a>
+          <a class="nav-item nav-link" href="http://localhost:5000/guide">Guide</a>
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+          </div>
+        </div>
+      </nav>
+    
+      <div class="container">
+        <form action="http://localhost:5000/fertilizer_info" method="POST">
+            <div class="col-sm-4"><br><br>
+                <label for=""> Crop Type</label>
+                <select id="next" title="Pick a number" class="form-control" name="crop">
+                    <option>Select...</option>
+                    <option value="All">All</option>
+                    {% for i in range(crop_len) %}
+                        <option value={{crops[i]}}>{{crops[i]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="">Frequenty Asked Query</label>
+                <select id="query" title="Pick a number" class="form-control" name="query">
+                    <option>Select...</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <br>
+                <input type="submit" value="Submit" class="btn">
+            </div>       
+        </form>
+    <div class="col-md-12">
+        <h3>Result found : <span class="text-muted">{{protection_len}} </span> </h3>
+    
+    {% if display  == True %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(protection_len) %}
+                <tr>
+                    <td>{{protection[i]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif%}
+
+</div>
+</div>
+
+
+<script>
+
+$(document).ready(function(){
+
+$("select#next").change(function() {
+
+    var managerName = $(this).find('option:selected').text();
+    console.log(managerName)
+    $.ajax({
+        type: 'GET',
+        url: "fertilizer_info",
+        data: { manager: managerName },
+        // contentType: 'application/json',
+        // dataType: 'json'
+        success: function (resp) {
+            var len = resp.query.length
+            var i = 0
+            console.log(len)
+            // console.log(resp.query)
+            // console.log(resp.query[0].name)
+            $("#query").empty();
+            for(i=0 ;i<len;i++){
+                console.log(resp.query[i].name)
+                $("#query").append("<option value='"+resp.query[i].name+"'>"+resp.query[i].name+"</option>");
+            }
+
+            // $("#query").append("<option value='"+id+"'>"+name+"</option>");
+                // $('#query').html(resp.data)
+                // console.log(resp.data.query)
+                // console.log(resp.data)
+        }
+    });
+});
+});
+
+
+</script>
+
+
+
+
+</body>
+</html>

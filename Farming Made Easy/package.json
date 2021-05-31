@@ -1,0 +1,18 @@
+{
+  "name": "Crop_Prediction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chartjs-node-canvas": "^3.1.0"
+  },
+  "devDependencies": {
+    "chart.js": "^2.9.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
